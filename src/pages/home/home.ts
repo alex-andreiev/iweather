@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
 import { WeatherProvider } from '../../providers/weather/weather';
 import { Storage } from '@ionic/storage';
 
@@ -34,7 +33,7 @@ export class HomePage {
         }
       }
       this.weatherProvider.getWeather(this.location.city, this.location.state).subscribe(weather => {
-        this.weather = weather.current_observation;
+        this.weather = weather["current_observation"];
       })
     })
   }
