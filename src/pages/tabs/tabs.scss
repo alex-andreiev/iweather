@@ -1,0 +1,74 @@
+page-tabs {
+}
+
+.tabs-md .tabbar,
+.tabs-ios .tabbar {
+  background: linear-gradient(180deg, #5d7fb5 0%, #435d8c 100%);
+  padding: 8px 10px 10px;
+  border-top: 0;
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.tabs-md .tabbar .tab-button,
+.tabs-ios .tabbar .tab-button {
+  position: relative;
+  flex: 1 1 0;
+  margin: 0 6px !important;
+  border-radius: 999px !important;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.72);
+  transition: transform 160ms ease, color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.tabs-md .tabbar .tab-button::before,
+.tabs-ios .tabbar .tab-button::before {
+  content: '';
+  position: absolute;
+  inset: 4px 2px;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.05);
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+  z-index: 0;
+}
+
+.tabs-md .tabbar .tab-button .button-inner,
+.tabs-md .tabbar .tab-button .tab-button-icon,
+.tabs-md .tabbar .tab-button .tab-button-text,
+.tabs-ios .tabbar .tab-button .button-inner,
+.tabs-ios .tabbar .tab-button .tab-button-icon,
+.tabs-ios .tabbar .tab-button .tab-button-text {
+  position: relative;
+  z-index: 1;
+}
+
+.tabs-md .tabbar .tab-button .tab-button-icon,
+.tabs-ios .tabbar .tab-button .tab-button-icon {
+  color: rgba(255, 255, 255, 0.72);
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.tabs-md .tabbar .tab-button[aria-selected='true'],
+.tabs-ios .tabbar .tab-button[aria-selected='true'] {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.22) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), 0 8px 16px rgba(0, 0, 0, 0.10);
+  transform: scale(0.94) translateY(-1px);
+  z-index: 1;
+}
+
+.tabs-md .tabbar .tab-button[aria-selected='true']::before,
+.tabs-ios .tabbar .tab-button[aria-selected='true']::before {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.tabs-md .tabbar .tab-button[aria-selected='true'] .tab-button-icon,
+.tabs-ios .tabbar .tab-button[aria-selected='true'] .tab-button-icon {
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.tabs-md .tabbar .tab-button[aria-selected='true'] .tab-button-text,
+.tabs-ios .tabbar .tab-button[aria-selected='true'] .tab-button-text {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}

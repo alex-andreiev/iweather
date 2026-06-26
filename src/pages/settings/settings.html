@@ -1,34 +1,42 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>settings</ion-title>
+    <ion-title>Settings</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content padding class="settings-page">
+  <div class="settings-shell">
+    <div class="settings-hero">
+      <h1>Saved location</h1>
+      <p>Change the city and country code used on the Home screen.</p>
+    </div>
 
-<ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col width-100>
-        <ion-list>
-          <form (ngSubmit)="saveForm()">
-            <ion-item>
-              <ion-label fixed>
-                City
-              </ion-label>
-              <ion-input [(ngModel)]="city" name="city" type="text"></ion-input>
+    <ion-card class="settings-card">
+      <ion-card-content>
+        <form (ngSubmit)="saveForm()" class="settings-form">
+          <ion-item class="toggle-card" no-lines>
+            <ion-label class="toggle-label">Auto-detect location</ion-label>
+            <ion-toggle [(ngModel)]="useAutoLocation" name="useAutoLocation" (ionChange)="onAutoLocationChange()"></ion-toggle>
+          </ion-item>
+
+          <div class="location-status" *ngIf="locationStatus">{{ locationStatus }}</div>
+
+          <div *ngIf="!useAutoLocation" class="manual-fields">
+            <ion-item class="field-card" no-lines>
+              <ion-label stacked class="field-label">City</ion-label>
+              <ion-input class="field-input" [(ngModel)]="city" name="city" type="text" placeholder="Kyiv"></ion-input>
             </ion-item>
-            <ion-item>
-              <ion-label fixed>
-                State
-              </ion-label>
-              <ion-input [(ngModel)]="state" name="state" type="text"></ion-input>
+            <ion-item class="field-card" no-lines>
+              <ion-label stacked class="field-label">State / Country</ion-label>
+              <ion-input class="field-input" [(ngModel)]="state" name="state" type="text" placeholder="UA"></ion-input>
             </ion-item>
-            <button ion-button type="submit" block>Save Changes</button>
-          </form>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+          </div>
+
+          <button ion-button type="submit" block class="save-button" [disabled]="isDetectingLocation">
+            {{ isDetectingLocation ? 'Detecting location...' : 'Save changes' }}
+          </button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

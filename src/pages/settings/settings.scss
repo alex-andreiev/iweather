@@ -1,3 +1,146 @@
 page-settings {
+  ion-content.settings-page {
+    background: linear-gradient(180deg, #14233b 0%, #0b121f 100%);
+    color: #eff5fb;
+  }
 
+  .settings-shell {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 8px 4px 24px;
+  }
+
+  .settings-hero {
+    padding: 24px 18px 18px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(95, 163, 255, 0.25), rgba(15, 23, 42, 0.75));
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26);
+    margin-bottom: 18px;
+  }
+
+  .settings-hero h1 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .settings-hero p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+  }
+
+  .settings-card {
+    margin: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+  }
+
+  .settings-form {
+    display: grid;
+    gap: 14px;
+  }
+
+  .toggle-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 2px 4px;
+    border-bottom: 1px solid rgba(84, 129, 173, 0.12);
+  }
+
+  .toggle-label {
+    margin: 0;
+    color: #17324a;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .location-status {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(76, 143, 229, 0.08);
+    color: #35556f;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .manual-fields {
+    display: grid;
+    gap: 14px;
+  }
+
+  .field-card {
+    --background: transparent;
+    --border-color: transparent;
+    --highlight-color-focused: #4c8fe5;
+    --min-height: auto;
+    display: block;
+    margin: 0;
+    padding: 14px 16px 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(52, 95, 138, 0.14);
+    background: linear-gradient(180deg, #f7fbff 0%, #eef5fb 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  }
+
+  .field-card.item-md,
+  .field-card.item-ios {
+    align-items: stretch;
+  }
+
+  .field-card.item-md .item-inner,
+  .field-card.item-ios .item-inner {
+    padding-right: 0;
+    border-bottom: 0;
+  }
+
+  .field-label {
+    margin: 0 0 10px;
+    color: #35556f;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+  }
+
+  .field-card ion-input {
+    color: #17324a;
+    font-size: 17px;
+    width: 100%;
+  }
+
+  .field-card input.text-input {
+    margin: 0;
+    padding: 12px 14px;
+    width: 100%;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(84, 129, 173, 0.18);
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+
+  .field-card input.text-input::placeholder {
+    color: #8ca3b8;
+  }
+
+  .field-card.item-input-has-focus input.text-input {
+    border-color: #4c8fe5;
+    box-shadow: 0 0 0 3px rgba(76, 143, 229, 0.12), inset 0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+
+  .save-button {
+    margin-top: 6px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #4c8fe5, #2c5fb1);
+    box-shadow: 0 12px 24px rgba(44, 95, 177, 0.25);
+    text-transform: none;
+    font-weight: 700;
+    height: 48px;
+  }
 }

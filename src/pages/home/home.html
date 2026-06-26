@@ -5,36 +5,88 @@
 </ion-header>
 
 <ion-content padding class="home">
-  <ion-grid *ngIf="weather">
-    <ion-row>
-      <ion-col width-50 offset-25>
-        <h2 class="location">{{weather.display_location.full}}</h2>
-        <div><img src="{{weather.icon_url}}" class="icon"></div>
-        <h3 class="desc">{{weather.weather}}</h3>
-        <h1 class="temp">{{weather.temp_c}}&deg;</h1>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col width-100>
-        <ion-list>
-          <ion-item>
-            <strong>Temp: </strong> {{weather.temperature_string}}
-          </ion-item>
-          <ion-item>
-            <strong>Realtive Humadity: </strong> {{weather.relative_humidity}}
-          </ion-item>
-          <ion-item>
-            <strong>Dewpoint: </strong> {{weather.dewpoint_string}}
-          </ion-item>
-          <ion-item>
-            <strong>Visibility: </strong> {{weather.visibility_km}}
-          </ion-item>
-          <ion-item>
-            <strong>Heat Index: </strong> {{weather.heat_index_string}}
-          </ion-item>
-          <ion-item></ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="home-shell">
+    <ion-segment [(ngModel)]="mode" (ionChange)="onModeChange()" class="mode-segment">
+      <ion-segment-button value="now">Now</ion-segment-button>
+      <ion-segment-button value="3days">3 days</ion-segment-button>
+      <ion-segment-button value="week">Week</ion-segment-button>
+    </ion-segment>
+
+    <ng-container *ngIf="!isLoading && weather; else loadingState">
+      <section class="weather-hero">
+        <div class="location-chip">{{ weather.display_location.full }}</div>
+        <div class="weather-icon">{{ weather.current.icon }}</div>
+        <h2 class="desc">{{ weather.current.description }}</h2>
+        <div class="temp-row">
+          <h1 class="temp">{{ weather.current.temp_c }}&deg;</h1>
+          <span class="temp-sub">Celsius</span>
+        </div>
+      </section>
+
+      <ion-card class="stats-card">
+        <ion-card-header>{{ getForecastLabel() }}</ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6>
+                <div class="stat">
+                  <span class="stat-label">Temperature</span>
+                  <span class="stat-value">{{ weather.current.temperature_string }}</span>
+                </div>
+              </ion-col>
+              <ion-col col-6>
+                <div class="stat">
+                  <span class="stat-label">Humidity</span>
+                  <span class="stat-value">{{ weather.current.humidity }}%</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-6>
+                <div class="stat">
+                  <span class="stat-label">Feels like</span>
+                  <span class="stat-value">{{ weather.current.apparent_temperature }}&deg;</span>
+                </div>
+              </ion-col>
+              <ion-col col-6>
+                <div class="stat">
+                  <span class="stat-label">Wind</span>
+                  <span class="stat-value">{{ weather.current.windspeed }} km/h</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="forecast-card" *ngIf="mode !== 'now' && weather.forecast && weather.forecast.length">
+        <ion-card-header>Forecast</ion-card-header>
+        <ion-card-content>
+          <div class="forecast-list">
+            <div class="forecast-row" *ngFor="let day of weather.forecast">
+              <div class="forecast-date">{{ day.date | date:'EEE, MMM d' }}</div>
+              <div class="forecast-main">
+                <div class="forecast-icon">{{ day.icon }}</div>
+                <div class="forecast-copy">
+                  <div class="forecast-desc">{{ day.description }}</div>
+                  <div class="forecast-prob">Rain chance {{ day.precipitation_probability_max }}%</div>
+                </div>
+              </div>
+              <div class="forecast-temps">
+                <span class="forecast-max">{{ day.max_temp_c }}&deg;</span>
+                <span class="forecast-min">{{ day.min_temp_c }}&deg;</span>
+              </div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+    <ng-template #loadingState>
+      <section class="loading-state">
+        <h2>Loading weather</h2>
+        <p>Fetching weather for your saved location.</p>
+      </section>
+    </ng-template>
+  </div>
 </ion-content>
